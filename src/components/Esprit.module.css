@@ -1,0 +1,48 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.text {}
+
+.lead {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 500;
+  font-size: clamp(20px, 4vw, 34px);
+  line-height: 1.18;
+  letter-spacing: -0.005em;
+  margin-bottom: 22px;
+  color: var(--pearl);
+}
+.lead b { color: var(--gold-bright); font-weight: 500; }
+
+.cols {
+  columns: 1;
+  column-gap: 36px;
+  font-size: 14px;
+  color: rgba(244, 242, 238, 0.66);
+}
+.cols p { margin-bottom: 14px; break-inside: avoid; }
+
+.fig {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fig img {
+  width: 100%;
+  max-width: 520px;
+  filter: drop-shadow(0 32px 56px rgba(0,0,0,.5));
+  transition: opacity 0.2s ease;
+}
+.imgFade { opacity: 0; }
+
+@media (min-width: 640px) {
+  .cols { columns: 2; }
+}
+
+@media (min-width: 980px) {
+  .grid { grid-template-columns: 1.1fr 1fr; gap: 80px; }
+}

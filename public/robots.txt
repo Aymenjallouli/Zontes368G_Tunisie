@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://zontes-tunisie.tn/sitemap.xml
+
+# Block unnecessary asset crawling
+Disallow: /sounds/

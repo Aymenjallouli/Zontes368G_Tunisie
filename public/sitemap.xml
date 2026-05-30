@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://zontes-tunisie.tn/</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+
+    <!-- White color images -->
+    <image:image>
+      <image:loc>https://zontes-tunisie.tn/images/white/RIGHTBLANCFRONT.png</image:loc>
+      <image:title>Zontes 368 G blanc — trois-quarts avant droit</image:title>
+      <image:caption>Zontes 368 G scooter SUV aventure coloris blanc</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zontes-tunisie.tn/images/white/FRONTLEFTBLANC.png</image:loc>
+      <image:title>Zontes 368 G blanc — trois-quarts avant gauche</image:title>
+      <image:caption>Zontes 368 G scooter SUV aventure blanc Tunisie</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zontes-tunisie.tn/images/white/FULLLEFTBLANC.png</image:loc>
+      <image:title>Zontes 368 G blanc — profil gauche</image:title>
+      <image:caption>Zontes 368 G profil complet blanc</image:caption>
+    </image:image>
+
+    <!-- Black color images -->
+    <image:image>
+      <image:loc>https://zontes-tunisie.tn/images/black/FRONTRIGHTBLACK.png</image:loc>
+      <image:title>Zontes 368 G noir — trois-quarts avant droit</image:title>
+      <image:caption>Zontes 368 G scooter SUV aventure coloris noir</image:caption>
+    </image:image>
+
+    <!-- Blue color images -->
+    <image:image>
+      <image:loc>https://zontes-tunisie.tn/images/blue/RIGHTFRONTBLUE.png</image:loc>
+      <image:title>Zontes 368 G bleu — trois-quarts avant droit</image:title>
+      <image:caption>Zontes 368 G scooter SUV aventure coloris bleu Tunisie</image:caption>
+    </image:image>
+
+    <!-- Detail shots -->
+    <image:image>
+      <image:loc>https://zontes-tunisie.tn/images/assets/detail-headlight.png</image:loc>
+      <image:title>Zontes 368 G — phares Full-LED</image:title>
+      <image:caption>Optiques Full-LED du Zontes 368 G</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zontes-tunisie.tn/images/assets/detail-wheel.png</image:loc>
+      <image:title>Zontes 368 G — fourche inversée 41 mm</image:title>
+      <image:caption>Fourche inversée réglable 41 mm et disque J.Juan du Zontes 368 G</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zontes-tunisie.tn/images/assets/detail-seat.png</image:loc>
+      <image:title>Zontes 368 G — selle ergonomique</image:title>
+      <image:caption>Selle ergonomique 795 mm du Zontes 368 G</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://zontes-tunisie.tn/images/assets/detail-tank.png</image:loc>
+      <image:title>Zontes 368 G — réservoir 17,5 L et clé mains libres</image:title>
+      <image:caption>Réservoir 17,5 L et système mains libres du Zontes 368 G</image:caption>
+    </image:image>
+  </url>
+</urlset>

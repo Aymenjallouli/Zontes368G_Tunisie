@@ -1,0 +1,52 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 44px;
+}
+
+.block h3 {
+  font-family: "Saira", sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-bright);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line-d);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.block h3 i {
+  font-style: normal;
+  font-family: "Saira Condensed", sans-serif;
+  color: rgba(244, 242, 238, 0.3);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.k { font-size: 13.5px; color: rgba(244, 242, 238, 0.62); flex-shrink: 0; }
+.v {
+  font-family: "Saira", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: right;
+  color: var(--pearl);
+}
+.v b {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+@media (min-width: 640px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 36px 60px; }
+}
