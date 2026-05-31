@@ -18,7 +18,7 @@ export interface Feature {
 export const FEATURES: Feature[] = [
   {
     index: '01',
-    imgSrc: '/images/assets/detail-headlight.png',
+    imgSrc: '/images/assets/detail-headlight.webp',
     imgAlt: 'Optiques Full-LED',
     eyebrow: 'Signature lumineuse',
     title: 'Regard Full-LED',
@@ -31,7 +31,7 @@ export const FEATURES: Feature[] = [
   },
   {
     index: '02',
-    imgSrc: '/images/assets/detail-wheel.png',
+    imgSrc: '/images/assets/detail-wheel.webp',
     imgAlt: 'Fourche inversée et disque',
     eyebrow: 'Châssis & liaison au sol',
     title: 'Fourche inversée 41 mm',
@@ -45,7 +45,7 @@ export const FEATURES: Feature[] = [
   },
   {
     index: '03',
-    imgSrc: '/images/assets/detail-seat.png',
+    imgSrc: '/images/assets/detail-seat.webp',
     imgAlt: 'Selle ergonomique',
     eyebrow: 'Confort grand tourisme',
     title: 'Selle ergonomique',
@@ -58,7 +58,7 @@ export const FEATURES: Feature[] = [
   },
   {
     index: '04',
-    imgSrc: '/images/assets/detail-tank.png',
+    imgSrc: '/images/assets/detail-tank.webp',
     imgAlt: 'Réservoir et clé mains libres',
     eyebrow: 'Usage & technologie',
     title: 'Mains libres & 17,5 L',

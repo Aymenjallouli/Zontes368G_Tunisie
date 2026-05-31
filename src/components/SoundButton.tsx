@@ -1,22 +1,20 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import styles from './SoundButton.module.css';
 
 export default function SoundButton() {
-  const [state, setState] = useState<'idle' | 'playing' | 'ending'>('idle');
+  const [state, setState] = useState<'idle' | 'playing'>('idle');
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  useEffect(() => {
-    const audio = new Audio('/sounds/engine.mp3');
-    audio.preload = 'auto';
-    audio.addEventListener('ended', () => setState('idle'));
-    audioRef.current = audio;
-    return () => { audio.pause(); audio.src = ''; };
-  }, []);
-
   const trigger = () => {
-    const audio = audioRef.current;
-    if (!audio) return;
+    // Lazy-load audio only on first interaction — no network cost on page load
+    if (!audioRef.current) {
+      const audio = new Audio('/sounds/engine.mp3');
+      audio.preload = 'none';
+      audio.addEventListener('ended', () => setState('idle'));
+      audioRef.current = audio;
+    }
 
+    const audio = audioRef.current;
     if (state === 'playing') {
       audio.pause();
       audio.currentTime = 0;
