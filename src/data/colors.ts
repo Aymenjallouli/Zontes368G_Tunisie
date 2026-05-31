@@ -56,14 +56,14 @@ export const COLOR_DATA: Record<ColorKey, ColorVariant> = {
     heroSrc: '/images/blue/RIGHTFRONTBLUE.webp',
     espritSrc: '/images/blue/FRONTSIDEBLUE.webp',
     views: [
-      { src: '/images/blue/FRONT.webp',          cap: 'Face avant' },
       { src: '/images/blue/FRONTSIDEBLUE.webp',  cap: 'Trois-quarts avant gauche' },
       { src: '/images/blue/FULLLEFTSIDE.webp',   cap: 'Profil gauche' },
-      { src: '/images/blue/LEFT.webp',           cap: 'Vue latérale gauche' },
       { src: '/images/blue/BACKLEFTSIDE.webp',   cap: 'Trois-quarts arrière gauche' },
       { src: '/images/blue/FULLBACKBLUE.webp',   cap: 'Face arrière' },
       { src: '/images/blue/BACKRIGHTBLUE.webp',  cap: 'Trois-quarts arrière droit' },
+      { src: '/images/blue/LEFT.webp',           cap: 'Profil droit' },
       { src: '/images/blue/RIGHTFRONTBLUE.webp', cap: 'Trois-quarts avant droit' },
+      { src: '/images/blue/FRONT.webp',          cap: 'Face avant' },
     ],
   },
 };
