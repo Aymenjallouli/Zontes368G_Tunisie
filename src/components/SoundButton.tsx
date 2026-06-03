@@ -1,17 +1,39 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './SoundButton.module.css';
 
 export default function SoundButton() {
-  const [state, setState] = useState<'idle' | 'playing'>('idle');
+  const [state, setState] = useState<'idle' | 'loading' | 'playing'>('idle');
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const trigger = () => {
-    // Lazy-load audio only on first interaction — no network cost on page load
-    if (!audioRef.current) {
+  /* Précharge le son en arrière-plan après le chargement de la page */
+  useEffect(() => {
+    const preload = () => {
       const audio = new Audio('/sounds/engine.mp3');
-      audio.preload = 'none';
+      audio.preload = 'auto';
       audio.addEventListener('ended', () => setState('idle'));
       audioRef.current = audio;
+    };
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(preload, { timeout: 3000 });
+    } else {
+      setTimeout(preload, 2000);
+    }
+  }, []);
+
+  const trigger = () => {
+    if (!audioRef.current) {
+      /* Fallback si le préchargement n'est pas encore terminé */
+      setState('loading');
+      const audio = new Audio('/sounds/engine.mp3');
+      audio.preload = 'auto';
+      audio.addEventListener('ended', () => setState('idle'));
+      audio.addEventListener('canplaythrough', () => {
+        audio.play().catch(() => {});
+        setState('playing');
+      }, { once: true });
+      audioRef.current = audio;
+      return;
     }
 
     const audio = audioRef.current;
@@ -21,8 +43,11 @@ export default function SoundButton() {
       setState('idle');
     } else {
       audio.currentTime = 0;
-      audio.play().catch(() => {});
-      setState('playing');
+      const playPromise = audio.play();
+      if (playPromise) {
+        setState('playing');
+        playPromise.catch(() => setState('idle'));
+      }
     }
   };
 
@@ -35,10 +60,10 @@ export default function SoundButton() {
     >
       <span className={styles.ring} />
       <span className={styles.icon}>
-        {state === 'playing' ? <WaveIcon /> : <IgnitionIcon />}
+        {state === 'loading' ? <SpinIcon /> : state === 'playing' ? <WaveIcon /> : <IgnitionIcon />}
       </span>
       <span className={styles.label}>
-        {state === 'playing' ? 'En marche' : 'Démarrer'}
+        {state === 'loading' ? 'Chargement...' : state === 'playing' ? 'En marche' : 'Démarrer'}
       </span>
     </button>
   );
@@ -58,6 +83,16 @@ function WaveIcon() {
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
       stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
       <path d="M2 12h2M6 8v8M10 5v14M14 9v6M18 7v10M22 12h-2" />
+    </svg>
+  );
+}
+
+function SpinIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"
+      style={{ animation: 'spin 0.8s linear infinite' }}>
+      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
     </svg>
   );
 }

@@ -1,0 +1,109 @@
+.page {
+  min-height: 100vh;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--black-2);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 40px;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+.mark {
+  font-family: "Saira Condensed", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--pearl);
+  padding-left: 0.38em;
+}
+.sub {
+  font-family: "Saira", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-left: 1px solid rgba(255,255,255,0.18);
+  padding-left: 10px;
+}
+
+.title {
+  font-family: "Saira Condensed", sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--pearl);
+  margin-bottom: 6px;
+  line-height: 1;
+  letter-spacing: normal;
+}
+.hint {
+  font-size: 13px;
+  color: rgba(244,242,238,0.42);
+  margin-bottom: 32px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.field { display: flex; flex-direction: column; gap: 8px; }
+.label {
+  font-family: "Saira", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(244,242,238,0.52);
+}
+.input {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--pearl);
+  padding: 12px 14px;
+  font-family: "Hanken Grotesk", sans-serif;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input:focus { border-color: var(--gold); }
+.input::placeholder { color: rgba(244,242,238,0.22); }
+
+.error {
+  background: rgba(255,80,80,0.1);
+  border: 1px solid rgba(255,80,80,0.3);
+  color: #ff8080;
+  padding: 10px 14px;
+  font-size: 13px;
+}
+
+.btn {
+  font-family: "Saira", sans-serif;
+  font-weight: 700;
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  background: var(--gold);
+  border: none;
+  color: #1a1408;
+  cursor: pointer;
+  transition: 0.25s var(--ease);
+  margin-top: 4px;
+}
+.btn:hover:not(:disabled) { background: var(--gold-bright); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }

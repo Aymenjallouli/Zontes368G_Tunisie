@@ -1,0 +1,73 @@
+services:
+
+  # ─── PostgreSQL ───────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: zontes
+      POSTGRES_PASSWORD: zontes_pass
+      POSTGRES_DB: zontes_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./setup-db.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U zontes -d zontes_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ─── API Express ──────────────────────────────────────────
+  api:
+    image: node:20-alpine
+    working_dir: /app
+    command: sh -c "npm install && npm run dev"
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    environment:
+      PORT: 4000
+      DATABASE_URL: postgresql://zontes:zontes_pass@db:5432/zontes_db
+      DB_SSL: "false"
+      JWT_SECRET: ${JWT_SECRET:-zontes368g_secret_key_2025_tunisie_very_long}
+      CORS_ORIGIN: http://localhost:5173
+      CLOUDINARY_CLOUD_NAME: ${CLOUDINARY_CLOUD_NAME}
+      CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY}
+      CLOUDINARY_API_SECRET: ${CLOUDINARY_API_SECRET}
+      # Hot reload Windows + Docker
+      TSX_TSCONFIG_PATH: ./tsconfig.json
+      CHOKIDAR_USEPOLLING: "true"
+      CHOKIDAR_INTERVAL: "500"
+    volumes:
+      - ./server:/app
+      - api_modules:/app/node_modules
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # ─── Frontend Vite ────────────────────────────────────────
+  frontend:
+    image: node:20-alpine
+    working_dir: /app
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: http://localhost:4000
+      # Hot reload Windows + Docker
+      CHOKIDAR_USEPOLLING: "true"
+      CHOKIDAR_INTERVAL: "500"
+      WATCHPACK_POLLING: "true"
+    volumes:
+      - .:/app
+      - frontend_modules:/app/node_modules
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
+  api_modules:
+  frontend_modules:

@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './Nav.module.css';
 
-const LINKS = [
+const HOME_LINKS = [
   { href: '#apercu',      label: 'Aperçu' },
   { href: '#esprit',      label: "L'esprit SUV" },
   { href: '#galerie',     label: 'Galerie' },
@@ -14,9 +15,10 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeHref, setActiveHref] = useState('');
-  const navRef = useRef<HTMLElement>(null);
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+  const isShop = location.pathname === '/pieces';
 
-  /* scroll state */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
@@ -24,9 +26,9 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  /* active link via IntersectionObserver */
   useEffect(() => {
-    const sections = LINKS.map(l => document.querySelector(l.href)).filter(Boolean) as Element[];
+    if (!isHome) return;
+    const sections = HOME_LINKS.map(l => document.querySelector(l.href)).filter(Boolean) as Element[];
     const obs = new IntersectionObserver(
       entries => {
         entries.forEach(e => {
@@ -37,26 +39,35 @@ export default function Nav() {
     );
     sections.forEach(s => obs.observe(s));
     return () => obs.disconnect();
-  }, []);
+  }, [isHome]);
 
-  /* close menu on link click */
   const closeMenu = () => setMenuOpen(false);
+
+  /* CTA href : scrolls on home, navigates from other pages */
+  const ctaHref = isHome ? '#prix' : '/#prix';
 
   return (
     <>
       <nav
-        ref={navRef}
         className={[styles.nav, scrolled ? styles.scrolled : ''].join(' ')}
         aria-label="Navigation principale"
       >
         <div className="wrap">
-          <div className={styles.brand}>
+          <Link to="/" className={styles.brand}>
             <span className={styles.mark}>Zontes</span>
             <span className={styles.sub}>368 G</span>
-          </div>
+          </Link>
 
           <div className={styles.links} role="list">
-            {LINKS.map(l => (
+            {/* Sur la page pièces : lien retour moto */}
+            {isShop && (
+              <Link to="/" role="listitem" className={styles.link}>
+                ← Moto 368 G
+              </Link>
+            )}
+
+            {/* Liens de section (homepage uniquement) */}
+            {isHome && HOME_LINKS.map(l => (
               <a
                 key={l.href}
                 href={l.href}
@@ -66,9 +77,18 @@ export default function Nav() {
                 {l.label}
               </a>
             ))}
+
+            {/* Lien Pièces & Accessoires — toujours visible */}
+            <Link
+              to="/pieces"
+              role="listitem"
+              className={[styles.link, styles.piecesLink, isShop ? styles.active : ''].join(' ')}
+            >
+              Pièces &amp; Accessoires
+            </Link>
           </div>
 
-          <a href="#prix" className={`btn gold ${styles.cta}`}>
+          <a href={ctaHref} className={`btn gold ${styles.cta}`}>
             Demander un devis
           </a>
 
@@ -83,16 +103,32 @@ export default function Nav() {
         </div>
       </nav>
 
+      {/* Drawer mobile */}
       <div
         className={[styles.drawer, menuOpen ? styles.drawerOpen : ''].join(' ')}
         aria-hidden={!menuOpen}
       >
-        {LINKS.map(l => (
+        {isShop && (
+          <Link to="/" className={styles.drawerLink} onClick={closeMenu}>
+            ← Moto 368 G
+          </Link>
+        )}
+
+        {isHome && HOME_LINKS.map(l => (
           <a key={l.href} href={l.href} className={styles.drawerLink} onClick={closeMenu}>
             {l.label}
           </a>
         ))}
-        <a href="#prix" className={`btn gold ${styles.drawerCta}`} onClick={closeMenu}>
+
+        <Link
+          to="/pieces"
+          className={[styles.drawerLink, isShop ? styles.drawerLinkActive : ''].join(' ')}
+          onClick={closeMenu}
+        >
+          Pièces &amp; Accessoires
+        </Link>
+
+        <a href={ctaHref} className={`btn gold ${styles.drawerCta}`} onClick={closeMenu}>
           Demander un devis
         </a>
       </div>

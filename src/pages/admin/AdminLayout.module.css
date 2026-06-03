@@ -1,0 +1,189 @@
+.root {
+  display: flex;
+  min-height: 100vh;
+  background: var(--black);
+  color: var(--pearl);
+}
+
+/* ════════════════════════════════════════════════
+   SIDEBAR — Desktop uniquement (980px+)
+   ════════════════════════════════════════════════ */
+.sidebar {
+  display: none;
+}
+
+/* ════════════════════════════════════════════════
+   MAIN CONTENT
+   ════════════════════════════════════════════════ */
+.main {
+  flex: 1;
+  padding: 20px 16px 100px; /* 100px pour éviter le chevauchement avec bottom nav */
+  min-height: 100vh;
+  background: #111113;
+  width: 100%;
+}
+
+/* ════════════════════════════════════════════════
+   BOTTOM NAV — Mobile uniquement
+   ════════════════════════════════════════════════ */
+.bottomNav {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--black-2);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: stretch;
+  height: 64px;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.bottomNavItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: rgba(244,242,238,0.4);
+  text-decoration: none;
+  font-family: "Saira", sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  border: none;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.bottomNavItem svg {
+  width: 20px; height: 20px;
+  stroke: currentColor;
+}
+.bottomNavActive {
+  color: var(--gold-bright);
+}
+.bottomNavLogout:hover,
+.bottomNavLogout:active {
+  color: #ff8080;
+}
+
+/* ════════════════════════════════════════════════
+   DESKTOP 980px+
+   ════════════════════════════════════════════════ */
+@media (min-width: 980px) {
+  .sidebar {
+    display: flex;
+    width: 240px;
+    min-height: 100vh;
+    background: var(--black-2);
+    border-right: 1px solid rgba(255,255,255,0.07);
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 50;
+  }
+  .main {
+    margin-left: 240px;
+    padding: 40px;
+  }
+  .bottomNav {
+    display: none;
+  }
+
+  /* ── Brand ── */
+  .brand {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 28px 24px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .brandMark {
+    font-family: "Saira Condensed", sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    padding-left: 0.38em;
+  }
+  .brandSub {
+    font-family: "Saira", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-left: 1px solid rgba(255,255,255,0.15);
+    padding-left: 10px;
+  }
+
+  /* ── Sidebar Nav ── */
+  .nav {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 20px 12px;
+    flex: 1;
+  }
+  .navItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    border-radius: 4px;
+    font-family: "Saira", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: rgba(244,242,238,0.52);
+    transition: 0.2s var(--ease);
+    text-decoration: none;
+  }
+  .navItem:hover {
+    background: rgba(255,255,255,0.05);
+    color: var(--pearl);
+  }
+  .navActive {
+    background: rgba(187,154,94,0.12);
+    color: var(--gold-bright);
+  }
+  .navIcon {
+    width: 18px; height: 18px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .navIcon svg { width: 100%; height: 100%; }
+
+  /* ── Sidebar Bottom ── */
+  .bottom {
+    padding: 16px 12px 24px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .siteLink, .logout {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 4px;
+    font-family: "Saira", sans-serif;
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: rgba(244,242,238,0.42);
+    transition: 0.2s var(--ease);
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+  }
+  .siteLink:hover { color: var(--pearl); background: rgba(255,255,255,0.04); }
+  .logout:hover { color: #ff8080; background: rgba(255,80,80,0.06); }
+  .siteLink svg, .logout svg { width: 16px; height: 16px; flex-shrink: 0; }
+}

@@ -94,6 +94,28 @@
   color: rgba(244, 242, 238, 0.42);
   margin-top: 10px;
 }
+.statusOk, .statusNo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 10px 14px;
+  border-radius: 2px;
+  font-family: "Saira", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+.statusOk {
+  background: rgba(111, 207, 151, 0.12);
+  color: #6fcf97;
+  border: 1px solid rgba(111, 207, 151, 0.25);
+}
+.statusNo {
+  background: rgba(242, 153, 74, 0.12);
+  color: #f2994a;
+  border: 1px solid rgba(242, 153, 74, 0.25);
+}
 .incl {
   list-style: none;
   margin-top: 26px;

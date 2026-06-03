@@ -22,7 +22,7 @@
 }
 
 /* brand */
-.brand { display: flex; align-items: baseline; gap: 12px; flex-shrink: 0; }
+.brand { display: flex; align-items: baseline; gap: 12px; flex-shrink: 0; text-decoration: none; }
 .mark {
   font-family: "Saira Condensed", sans-serif;
   font-weight: 700;
@@ -65,7 +65,20 @@
 .link:hover::after, .active::after { width: 100%; }
 .active { color: var(--ink); }
 
+.piecesLink {
+  border-left: 1px solid var(--line);
+  padding-left: 20px;
+  margin-left: 4px;
+  color: var(--gold-deep) !important;
+}
+.piecesLink:hover { color: var(--gold) !important; }
+
 .cta { display: none; }
+
+.drawerLinkActive {
+  color: var(--gold-deep) !important;
+  border-bottom-color: var(--gold) !important;
+}
 
 /* hamburger */
 .hamburger {
@@ -100,10 +113,17 @@
   border-bottom: 1px solid var(--line);
   padding: 8px 20px 24px;
   transform: translateY(-110%);
-  transition: transform 0.4s var(--ease);
+  transition: transform 0.4s var(--ease), visibility 0s 0.4s;
   pointer-events: none;
+  visibility: hidden;
+  overflow: hidden;
 }
-.drawerOpen { transform: translateY(0); pointer-events: all; }
+.drawerOpen {
+  transform: translateY(0);
+  pointer-events: all;
+  visibility: visible;
+  transition: transform 0.4s var(--ease), visibility 0s 0s;
+}
 .drawerLink {
   display: block;
   font-size: 17px;
